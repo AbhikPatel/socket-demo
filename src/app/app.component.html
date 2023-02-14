@@ -1,10 +1,18 @@
-<div class="container p-5">
-  <form>
+<div class="container p-5 h-100 d-flex flex-column">
+  <form [formGroup]="chatGroup" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <input type="text" class="form-controls" name="userName" id="userName">
+      <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter User" formControlName="name">
     </div>
     <div class="mb-3">
-      <input type="text" class="form-controls" name="message" id="message">
+      <input type="text" class="form-control" name="message" id="message" placeholder="Enter Message" formControlName="message">
     </div>
+    <button class="btn btn-danger w-100 mb-3" type="submit"> Send </button>
   </form>
+  <div class="border flex-grow-1 rounded-3 p-3">
+    <span class="text-muted" *ngIf="showTyping"> Typing... </span>
+    <div *ngFor="let data of chatsData">
+      <span class="text-primary"> {{data.name}}: </span>
+      <span> {{data.message}} </span>
+    </div>
+  </div>
 </div>
