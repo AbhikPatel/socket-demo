@@ -10,3 +10,25 @@ body{
     height: 100%;
     overflow: hidden;
 }
+
+.bg-chat{
+    background-color: #dcf8c6;
+}
+
+.chat{
+    padding: 1.5rem 0.8rem 0.8rem 0.8rem;
+    max-width: 300px;
+    min-width: 100px;
+    &-user{
+        top: 5px;
+        // right: 15px;
+    }
+}
+
+.fs-7{
+    font-size: 0.8rem;
+}
+
+.bg-theme{
+    background-color: #e7e7e7;
+}

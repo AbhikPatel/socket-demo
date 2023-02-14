@@ -7,7 +7,6 @@ import { Socket } from 'socket.io-client/build/esm/socket';
 
 export class SocketService {
 
-  // public socket: SocketIOClient.Socket;
   
   socket = io('http://172.16.3.107:1234')
   

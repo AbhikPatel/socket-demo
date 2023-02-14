@@ -1,18 +1,35 @@
-<div class="container p-5 h-100 d-flex flex-column">
-  <form [formGroup]="chatGroup" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter User" formControlName="name">
+<div class="h-100 bg-theme user-select-none">
+  <div class="container p-5 h-100 d-flex flex-column" style="max-width: 800px;">
+    <div class="text-center mb-3">
+      <h1> <span class="text-danger">1</span>Chat </h1>
     </div>
-    <div class="mb-3">
-      <input type="text" class="form-control" name="message" id="message" placeholder="Enter Message" formControlName="message">
+    <div class="d-flex justify-content-end mb-3">
+      <span> Online: {{onlineCount}} </span>
     </div>
-    <button class="btn btn-danger w-100 mb-3" type="submit"> Send </button>
-  </form>
-  <div class="border flex-grow-1 rounded-3 p-3">
-    <span class="text-muted" *ngIf="showTyping"> Typing... </span>
-    <div *ngFor="let data of chatsData">
-      <span class="text-primary"> {{data.name}}: </span>
-      <span> {{data.message}} </span>
+    <form [formGroup]="chatGroup">
+      <div class="mb-3">
+        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter User"
+          formControlName="name">
+      </div>
+    </form>
+    <div
+      class="bg-white border overflow-hidden shadow flex-grow-1 rounded-3 d-flex justify-content-end flex-column p-3">
+      <div class="py-3">
+        <div class="d-flex py-3" [ngClass]="{ 'justify-content-end' :  checkUser(data.name)}" *ngFor="let data of chatsData">
+          <div class="chat rounded-2 border  position-relative"
+            [ngClass]="checkUser(data.name) ? 'bg-chat' : 'bg-white'">
+            <span class="fs-7 position-absolute chat-user text-primary fw-bolder"> {{data.name}} </span>
+            <span> {{data.message}} </span>
+          </div>
+        </div>
+        <span class="text-muted" *ngIf="showTyping"> {{displayTyping()}} </span>
+      </div>
+      <form [formGroup]="chatGroup" (ngSubmit)="onSubmit()">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Enter Message" formControlName="message">
+          <button class="btn btn-primary" type="submit" id="button-addon2">Send</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
