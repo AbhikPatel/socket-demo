@@ -1,0 +1,14 @@
+<div class="d-flex h-100 flex-column overflow-hidden">
+    <div id="header" class="bg-theme">
+
+    </div>
+    <div class="chat-container flex-grow-1 overflow-auto">
+        
+    </div>
+    <div id="typer" class="bg-theme d-flex align-items-center px-2">
+        <form class="d-flex flex-grow-1" [formGroup]="chatGroup" (ngSubmit)="onSubmit()">    
+            <input type="text" class="form-control me-3" formControlName="message">
+            <button class="btn btn-primary" type="submit"> Send </button>
+        </form>
+    </div>
+</div>

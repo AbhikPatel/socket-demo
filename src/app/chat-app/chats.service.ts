@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import {io} from 'socket.io-client';
-import { Socket } from 'socket.io-client/build/esm/socket';
 
 @Injectable()
+export class ChatsService {
 
-export class SocketService {
-
-  
   socket = io('http://172.16.3.107:1234')
   
   constructor() {

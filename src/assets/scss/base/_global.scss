@@ -1,0 +1,20 @@
+// Global styles goes here
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.bg-theme{
+    background-color: #e7e7e7;
+}
+
+#typer{
+    flex: 0 0 80px;
+}

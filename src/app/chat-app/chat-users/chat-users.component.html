@@ -1,0 +1,19 @@
+<div class="d-flex h-100 flex-column">
+    <div id="header" class="d-flex align-items-center bg-theme px-3 border-dark border-end">
+        <h3> {{userName}} </h3>
+    </div>
+    <div class="flex-grow-1">
+        <div class="border py-3 px-2 d-flex">
+            <img src="../../../assets/images/avatar.jpg" alt="" class="profile-img rounded-circle">
+            <div class="d-flex ms-3 py-1">
+                <h5> Group </h5>
+            </div>
+        </div>
+        <div class="border py-3 px-2 d-flex" *ngFor="let data of users" role="button" (click)="onChat()">
+            <img src="../../../assets/images/avatar.jpg" alt="" class="profile-img rounded-circle">
+            <div class="d-flex ms-3 py-1">
+                <h5> {{data}} </h5>
+            </div>
+        </div>
+    </div>
+</div>

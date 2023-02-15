@@ -1,0 +1,12 @@
+<div class="h-100 d-flex">
+    <div id="sidebar" class="border border-end">
+        <app-chat-users
+            [users]="users"
+        ></app-chat-users>
+    </div>
+    <div class="flex-grow-1">
+        <app-chat-message
+            (emitMessage)="getMessage($event)"
+        ></app-chat-message>
+    </div>
+</div>
