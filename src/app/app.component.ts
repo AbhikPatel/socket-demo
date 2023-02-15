@@ -14,7 +14,9 @@ export class AppComponent implements OnInit {
   public chatsData: any[];
   public change: boolean;
   public userName: string;
-  public onlineCount: number;
+  public onlineCount:number;
+  public getIds:any[];
+  public currentId:string
 
   constructor(
     private _service: SocketService,
@@ -22,13 +24,16 @@ export class AppComponent implements OnInit {
   ) {
     this.chatGroup = this._fb.group({
       name: [''],
-      message: ['']
+      message: [''],
+      id: [''],
     })
     this.change = true;
     this.showTyping = false;
     this.chatsData = [];
     this.userName = '';
     this.onlineCount = 0;
+    this.getIds = [];
+    this.currentId = '';
   }
 
   ngOnInit(): void {
@@ -36,22 +41,31 @@ export class AppComponent implements OnInit {
   }
 
   public props() {
-    this._service.listen('chat').subscribe((data) => this.newMessage(data))
+    // this._service.listen('chat').subscribe((data) => this.newMessage(data))
+    this._service.listen('welcome').subscribe((data) => this.currentId = data.id)
     this._service.listen('typing').subscribe(() => {
       setTimeout(() => {
         this.showTyping = false;
       }, 800);
       this.showTyping = true
     });
-    this._service.listen('alive').subscribe((data) => this.onlineCount = data)
-    this._service.listen('connect').subscribe(() => console.log(this._service.socket.id))
+    this._service.listen('alive').subscribe((data) => {
+      this.onlineCount = data.clients_count
+      this.getIds = data.sids
+      let id = this.getIds.indexOf(this.currentId)
+      this.getIds.splice(id, 1) 
+    })
     this.chatGroup.controls['message'].valueChanges.subscribe((data) => this._service.emit('typing', data))
-    // this._service.listen('private').subscribe((dta))
+    this._service.listen('private').subscribe((data) => console.log(data))
   }
 
   public onSubmit() {
-    this._service.emit('chat', this.chatGroup.value)
-    this.chatsData.push(this.chatGroup.value)
+    // this._service.emit('chat', this.chatGroup.value)
+    // this.chatsData.push(this.chatGroup.value)
+    // if(this.chatGroup.value.id)
+    // console.log(this.chatGroup.value.io);
+    
+    this._service.emit('private', {id:this.chatGroup.value.id, message:this.chatGroup.value.message})
     this.chatGroup.controls['message'].setValue('')
   }
 
