@@ -51,9 +51,11 @@ export class ChatAppComponent implements OnInit {
     });
     this._service.listen('open_chat').subscribe((data) => this.chatsData.push(data.message));
     this._service.listen('chat').subscribe((item) => {
-      alert('New Message from ' + item.data.name)
-      this.chatGroup.controls['id'].setValue(item.data.receiver)
-      this.chatsData.push(item.data.message)
+      // alert('New Message from ' + item.data.name)
+      this.chatGroup.controls['id'].setValue(item.data.name)
+      this.chatsData.push(item.data)
+      console.log(item);
+      
     })
 
     this._service.listen('typing').subscribe((data) => {
