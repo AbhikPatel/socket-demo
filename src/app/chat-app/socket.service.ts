@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 @Injectable()
 export class SocketService {
 
-  socket = io('ws://anonychat.onrender.com:2121')
+  socket = io('https://anonychat.onrender.com:2121')
   
   constructor() {
   }
