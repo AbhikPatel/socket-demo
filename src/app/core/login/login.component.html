@@ -1,0 +1,9 @@
+<!-- Form  -->
+<form class="h-100 d-flex flex-column justify-content-center" [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
+    <!-- UserName  -->
+    <div class="mb-3">
+        <label for="userName" class="form-label"> Enter User Name </label>
+        <input type="text" name="userName" id="userName" class="form-control" formControlName="name">
+    </div>
+    <button class="btn btn-primary" type="submit"> Submit </button>
+</form>

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SocketService } from './socket.service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,12 +12,9 @@ import { SocketService } from './socket.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    CoreModule
   ],
-  providers: [
-    SocketService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
