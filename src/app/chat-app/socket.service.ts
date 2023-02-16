@@ -5,9 +5,11 @@ import { io } from 'socket.io-client';
 @Injectable()
 export class SocketService {
 
-  socket = io('https://anonychat.onrender.com:2121')
+  socket = io('https://anonychat.onrender.com:21321')
+  // socket = io('ws://172.16.3.107:21321')
   
   constructor() {
+    
   }
   
   listen(eventname: string): Observable<any> {

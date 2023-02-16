@@ -1,3 +1,25 @@
-<div class="h-100 bg-white">
+<div class="d-flex flex-column h-100 p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <span> Online: {{liveUser.length}} </span>
+        </div>
+        <form>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </form>
+    </div>
+    <div class="flex-grow-1 border rounded-2 mb-3 bg-white">
 
+    </div>
+    <form [formGroup]="chatGroup">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="submit" id="button-addon2"><i class='bx bxs-send'></i></button>
+        </div>
+    </form>
 </div>

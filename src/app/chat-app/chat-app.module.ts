@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChatAppRoutingModule } from './chat-app-routing.module';
 import { ChatAppComponent } from './chat-app.component';
 import { SocketService } from './socket.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SocketService } from './socket.service';
   ],
   imports: [
     CommonModule,
-    ChatAppRoutingModule
+    ChatAppRoutingModule,
+    ReactiveFormsModule
   ],
   providers:[
     SocketService
