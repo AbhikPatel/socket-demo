@@ -16,6 +16,8 @@ export class ChatAppComponent implements OnInit {
   public userName: any;
   public showTyping: boolean;
   public typingUser: string;
+  public currentTime: any;
+  public timeData: any;
 
   constructor(
     private _service: SocketService,
@@ -38,12 +40,21 @@ export class ChatAppComponent implements OnInit {
   }
 
   public props() {
+
+    setInterval(() => { 
+      this.currentTime = new Date()
+      let hours = this.currentTime.getHours()
+      let minutes = this.currentTime.getMinutes()
+      this.timeData = `${hours + ':' + minutes}`
+    },1000)
+
     this.chatGroup.controls['id'].setValue('Group')
     this._commonService.userName$.subscribe((data) => this.userName = data)
     this._service.emit('setUserName', this.userName)
     this._service.listen('welcome').subscribe((data) => console.log(data));
     this._service.listen('alive').subscribe((data) => {
       this.liveUser = ['Group'].concat(Object.keys(data.users))
+      
     });
     this._service.listen('connect_error').subscribe(() => {
       alert('Username already exists')
@@ -51,8 +62,10 @@ export class ChatAppComponent implements OnInit {
     });
     this._service.listen('open_chat').subscribe((data) => this.chatsData.push(data.message));
     this._service.listen('chat').subscribe((item) => {
-      alert('New Message from ' + item.data.name)
-      this.chatGroup.controls['id'].setValue(item.data.name)
+      if(this.chatGroup.value.id !== item.data.name){
+        alert('New Message from ' + item.data.name)
+        this.chatGroup.controls['id'].setValue(item.data.name)
+      }
       this.chatsData.push(item.data) 
     })
 
@@ -73,6 +86,7 @@ export class ChatAppComponent implements OnInit {
       let messageObj = {
         name: this.userName,
         message: this.chatGroup.value.message,
+        time:this.timeData
       }
       if(this.chatGroup.value.id === 'Group'){
         this._service.emit('open_chat', messageObj) 

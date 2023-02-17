@@ -29,10 +29,14 @@ body{
 
 .chat{
     max-width: 300px;
-    padding: 1.2rem 0.4rem 0.4rem 0.4rem;
+    padding: 1.2rem 0.4rem 1.2rem 0.4rem;
     min-width: 80px;
 
     &-name{
         top: 5px;
+    }
+
+    &-time{
+        right: 5px;
     }
 }

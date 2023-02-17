@@ -9,14 +9,14 @@
             </select>
         </form>
     </div>
-    <div class="flex-grow-1 border rounded-2 mb-3 bg-white d-flex flex-column justify-content-end overflow-auto p-3">
+    <div class="flex-grow-1 border rounded-2 mb-3 bg-white overflow-auto p-3">
         <div class="d-flex align-items-center my-2" *ngFor="let data of chatsData" [ngClass]="data.name === userName ? 'justify-content-end' : 'justify-content-start'">
             <div class="chat rounded-3 border position-relative" [ngClass]="{ 'bg-chat' :data.name === userName}">
                 <span class="position-absolute chat-name text-primary fw-bolder fs-7"> {{data.name}} </span>
                 {{data.message}}   
+                <span class="position-absolute chat-time text-muted bottom-0 fs-7"> {{data.time}} </span>
             </div>
         </div>
-        <span class="text-muted" [ngClass]="showTyping ? 'visible' : 'invisible'"> {{typingUser}} is Typing... </span>
     </div>
     <form [formGroup]="chatGroup" (ngSubmit)="onSubmit()">
         <div class="input-group">
